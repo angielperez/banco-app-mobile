@@ -1,0 +1,34 @@
+.padre{
+    background-color: #19191B;
+    height: 100vh;
+    width: 100%;
+    background-image: url(../IMG/fondo-md.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+}
+
+
+
+.boton{
+    margin: auto;
+    margin-bottom: 60px;
+    margin-top: 10px;
+}
+
+.factura{
+    margin: auto;
+    padding-top: 20px;
+    border-radius: 10px;
+    width: 90%;
+    height: 70%;
+    background-color: aliceblue;
+    margin-top: 100px;
+}
+
+h6, h5{
+    font-size: 10px;
+}
+
+.input-app{
+    padding: 10px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/valorRetiro.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="../JS/principal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>BancaMovil</title>
+</head>
+
+<body>
+    <div class="padre">
+        <a style="position: absolute; margin-top: 10px; margin-left: 10px;" 
+        onclick="window.history.back()"><img src="../IMG/icon-atras.png" alt=""></a>
+        <div class="titulo text-center row" id="div-escoge-dinero">
+
+            <h1 class="col-12">Escoge el valor a retirar</h1>
+
+            <a style="background-color: #5454D4; border-color: #5454D4;"
+                class="col-5 boton btn btn-primary rounded-0 fw-medium btn-lg"
+                onclick="validarValor(20000)">$20.000</a><br>
+            <a style="background-color: #5454D4; border-color: #5454D4;"
+                class="col-5 boton btn btn-primary rounded-0 fw-medium btn-lg"
+                onclick="validarValor(50000)">$50.000</a><br>
+            <a style="background-color: #5454D4; border-color: #5454D4;"
+                class="col-5 boton btn btn-primary rounded-0 fw-medium btn-lg"
+                onclick="validarValor(100000)">$100.000</a><br>
+            <a style="background-color: #5454D4; border-color: #5454D4;"
+                class="col-5 boton btn btn-primary rounded-0 fw-medium btn-lg"
+                onclick="validarValor(400000)">$400.000</a><br>
+            <a style="background-color: #5454D4; border-color: #5454D4;"
+                class="col-5 boton btn btn-primary rounded-0 fw-medium btn-lg"
+                onclick="validarValor(600000)">$600.000</a><br>
+            <a style="background-color: #3c853d; border-color: #3c853d;"
+                class="col-5 boton btn btn-primary rounded-0 fw-medium btn-lg"
+                onclick="habilitarOtroValor()"
+                >Otro Valor</a><br>
+        </div>
+
+        <div class="titulo text-center row hide block" id="div-digita-valor">
+            <h1 class="col-12">Digita el valor a retirar</h1>
+            <input type="number" id="valor-digitado" class="input-app" placeholder="Valor a retirar" />
+            <br><br>
+            <a style="background-color: #5454D4; border-color: #5454D4;"
+                class="boton btn btn-primary rounded-0 fw-medium btn-lg"
+                onclick="validarValor($('#valor-digitado').val())">Aceptar</a>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

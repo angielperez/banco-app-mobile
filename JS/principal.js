@@ -11,7 +11,7 @@ var basedatos = localStorage.getItem("datos") ? JSON.parse(localStorage.getItem(
 
 var codigoAleatorio = Math.floor(100000 + Math.random() * 900000);
 var segundos = 60
-
+var intentosNequi = 0
 function validarCuentaNequi() {
     try {
         let cuenta = $("#cuentaBanco").val()
@@ -62,9 +62,18 @@ function validarCuentaAhorroMano() {
     }
 }
 
+
 function validarCodigoNequi(){
     if ($("#codigo").val().trim() != codigoAleatorio) {
-        dialog("Error", "El codigo no es valido", "error")
+        intentosNequi++
+        if (intentosNequi == 3) {
+            dialog("Error", "Ha superado el maximo de intentos para el codigo", "error")
+            setTimeout(() => {
+                window.history.back()
+            }, 2 * 1000); 
+        }else{
+            dialog("Error", "El codigo no es valido", "error")
+        }
     }else{
         location.href = "registroOperacion.html"
     }
@@ -86,23 +95,33 @@ function validarValor(valor) {
     }
 }
 
-function calcularBilletes(monto) {
-    let billetes = [100000, 50000, 20000, 10000];
-    let resultado = {};
-    while (monto > 0) {
-        for (let i = 0; i < billetes.length; i++) {
-            let cantidad = Math.floor(monto / billetes[i]);
-            if (cantidad > 0) {
-                resultado[billetes[i]] = cantidad;
-                monto -= cantidad * billetes[i];
+function calcularBilletes(cantidad) {
+    let billetes = [10000, 20000, 50000, 100000];
+    let billetesUsados = [];
+    let cantidadActual = 0;
+    let reinicio = 0;
+
+    while (cantidadActual < cantidad) {
+        for (let i = reinicio; i < billetes.length; i++) {
+            if ((cantidadActual + billetes[i]) <= cantidad) {
+                cantidadActual += billetes[i];
+                billetesUsados.push(billetes[i]);
             }
+        }
+        reinicio += 1;
+        if (reinicio === billetes.length) {
+            reinicio = 0;
         }
     }
 
-    guardar("billetes10", resultado[10000] ? resultado[10000] : 0);
-    guardar("billetes20", resultado[20000] ? resultado[20000] : 0);
-    guardar("billetes50", resultado[50000] ? resultado[50000] : 0);
+    let resultado = billetesUsados.reduce((contador, billete) => {
+        contador[billete] = (contador[billete] || 0) + 1;
+        return contador;
+    }, {});
     guardar("billetes100", resultado[100000] ? resultado[100000] : 0);
+    guardar("billetes50", resultado[50000] ? resultado[50000] : 0);
+    guardar("billetes20", resultado[20000] ? resultado[20000] : 0);
+    guardar("billetes10", resultado[10000] ? resultado[10000] : 0);
 }
 
 function guardar(campo, valor) {

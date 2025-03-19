@@ -23,7 +23,7 @@ function validarCuentaNequi() {
         guardar("banco", "NEQUI");
         location.href = "valorRetiro.html"
     } catch (error) {
-        dialog("Error", error, "error")
+        notificacion("Error", error, "error")
     }
 }
 
@@ -40,7 +40,7 @@ function validarCuentaBancolombia() {
         guardar("banco", "BANCOLOMBIA");
         location.href = "valorRetiro.html"
     } catch (error) {
-        dialog("Error", error, "error")
+        notificacion("Error", error, "error")
     }
 }
 
@@ -59,7 +59,7 @@ function validarCuentaAhorroMano() {
         guardar("banco", "BANCOLOMBIA A LA MANO");
         location.href = "valorRetiro.html"
     } catch (error) {
-        dialog("Error", error, "error")
+        notificacion("Error", error, "error")
     }
 }
 
@@ -68,12 +68,12 @@ function validarCodigoNequi(){
     if ($("#codigo").val().trim() != codigoAleatorio) {
         intentosNequi++
         if (intentosNequi == 3) {
-            dialog("Error", "Ha superado el maximo de intentos para el codigo", "error")
+            notificacion("Error", "Ha superado el maximo de intentos para el codigo", "error")
             setTimeout(() => {
                 window.history.back()
             }, 2 * 1000); 
         }else{
-            dialog("Error", "El codigo no es valido", "error")
+            notificacion("Error", "El codigo no es valido", "error")
         }
     }else{
         location.href = "registroOperacion.html"
@@ -92,7 +92,7 @@ function validarValor(valor) {
         calcularBilletes(valor);
         location.href = basedatos.banco == "NEQUI" ? "codigoRetiro.html" : "registroOperacion.html";
     }else{
-        dialog("Error", "El valor a retirar no es valido para los billetes disponibles", "error")
+        notificacion("Error", "El valor a retirar no es valido para los billetes disponibles", "error")
     }
 }
 
@@ -130,7 +130,7 @@ function guardar(campo, valor) {
     localStorage.setItem("datos", JSON.stringify(basedatos));
 }
 
-function dialog(titulo, msg, icono) {
+function notificacion(titulo, msg, icono) {
     Swal.fire({
         title: titulo,
         text: msg,
@@ -191,6 +191,7 @@ function formatoMonedaColombiana(numero) {
     return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(numero);
 }
 
+//EJECUION APENAS INICIA LA PAGINA
 $(document).ready(() => {
     $("#codigo-retiro-rand").html(codigoAleatorio)
     $("#expiracion-segundos").html(segundos)

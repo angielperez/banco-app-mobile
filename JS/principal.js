@@ -36,7 +36,7 @@ function validarCuentaBancolombia() {
         if (!esSoloNumeros(clave)) throw "Clave invalida por caracteres no validos";
         if (clave.length != 4) throw "Clave invalida";
         guardar("operacion", "RETIRO");
-        guardar("numCuenta", "0"+cuenta);
+        guardar("numCuenta", cuenta);
         guardar("banco", "BANCOLOMBIA");
         location.href = "valorRetiro.html"
     } catch (error) {
@@ -160,7 +160,7 @@ function pintarFactura() {
     $("#fac-hora").html(obtenerHoraActual());
     
     $("#fac-operacion").html(basedatos.operacion);
-    $("#fac-numCuenta").html(basedatos.numCuenta);
+    $("#fac-numCuenta").html(basedatos.banco == "NEQUI" ? `0${basedatos.numCuenta}` : basedatos.numCuenta);
     $("#fac-banco").html(basedatos.banco);
     $("#fac-valor").html(formatoMonedaColombiana(basedatos.valor).split(",")[0]);
     $("#fac-billetes10").html(basedatos.billetes10);

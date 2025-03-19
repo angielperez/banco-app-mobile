@@ -36,7 +36,7 @@ function validarCuentaBancolombia() {
         if (!esSoloNumeros(clave)) throw "Clave invalida por caracteres no validos";
         if (clave.length != 4) throw "Clave invalida";
         guardar("operacion", "RETIRO");
-        guardar("numCuenta", cuenta);
+        guardar("numCuenta", "0"+cuenta);
         guardar("banco", "BANCOLOMBIA");
         location.href = "valorRetiro.html"
     } catch (error) {

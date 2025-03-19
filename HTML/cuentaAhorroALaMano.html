@@ -20,7 +20,7 @@
     
             <div class="titulo text-center">
                 <h4>Asegurate de que tus datos sean correctos</h4><br>
-                <input type="number" id="cuentaBanco" placeholder="Número de cuenta"><br><br>
+                <input maxlength="11" oninput="this.value = this.value.replace(/\D/g, '')" type="text" id="cuentaBanco" placeholder="Número de cuenta"><br><br>
                 <input type="password" id="clave" placeholder="Contraseña"><br><br>
                 <a style="background-color: #5454D4; border-color: #5454D4;"
                 class="boton btn btn-primary rounded-0 fw-medium btn-lg" 

@@ -44,7 +44,7 @@
 
         <div class="titulo text-center row hide block" id="div-digita-valor">
             <h1 class="col-12">Digita el valor a retirar</h1>
-            <input type="number" id="valor-digitado" class="input-app" placeholder="Valor a retirar" />
+            <input oninput="this.value = this.value.replace(/\D/g, '')" type="text" id="valor-digitado" class="input-app" placeholder="Valor a retirar" />
             <br><br>
             <a style="background-color: #5454D4; border-color: #5454D4;"
                 class="boton btn btn-primary rounded-0 fw-medium btn-lg"

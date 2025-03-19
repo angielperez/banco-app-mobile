@@ -32,6 +32,7 @@ function validarCuentaBancolombia() {
         let cuenta = $("#cuentaBanco").val()
         let clave = $("#clave").val()
         if (!esSoloNumeros(cuenta)) throw "Numero de cuenta invalido por caracteres no validos";
+        if (cuenta.length != 11) throw "Numero de cuenta invalido";
         if (!esSoloNumeros(clave)) throw "Clave invalida por caracteres no validos";
         if (clave.length != 4) throw "Clave invalida";
         guardar("operacion", "RETIRO");

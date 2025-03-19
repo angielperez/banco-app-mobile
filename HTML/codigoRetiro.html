@@ -21,7 +21,7 @@
         <div class="titulo text-center">
             <h4>Codigo: <b id="codigo-retiro-rand"></b></h4>
             <small>Este codigo expira en <b id="expiracion-segundos"></b> segundos</small><br>
-            <input type="number" class="input-app" id="codigo" placeholder="Ingrese código"><br><br><br>
+            <input maxlength="6" oninput="this.value = this.value.replace(/\D/g, '')" type="text" class="input-app" id="codigo" placeholder="Ingrese código"><br><br><br>
             <a style="background-color: #5454D4; border-color: #5454D4;"
             class="boton btn btn-primary rounded-0 fw-medium btn-lg" onclick="validarCodigoNequi()">Confirmar</a>
         </div>
